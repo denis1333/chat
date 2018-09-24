@@ -145,7 +145,7 @@ class SiteController extends Controller
 		Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
 		$params = [':name' => $chatName];
 		$response = Yii::$app->db->createCommand(
-		'SELECT user FROM user_in_chat WHERE chat = (SELECT id FROM chat WHERE name = :name)'
+		'SELECT nick FROM user WHERE id = (SELECT user FROM user_in_chat WHERE chat = (SELECT id FROM chat WHERE name = :name))'
 		);
 		$result = $response->bindValues($params)->queryAll();
 		return $result;
