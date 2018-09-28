@@ -41,12 +41,14 @@ class SiteController extends Controller
 	
 	public function actionRegistration($nick, $mail, $pass)
     {
+		Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
 		$result = Yii::$app->db->createCommand()->insert('user', ['nick'=>$nick, 'mail'=>$mail, 'pass'=>$pass])->execute();
         return $result;
     }
 	
 	public function actionAutorization($mail, $pass)
 	{
+		Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
 		$params = [':mail' => $mail, ':pass' => $pass];
 		$response = Yii::$app->db->createCommand('SELECT * FROM user WHERE mail = :mail AND pass = :pass');
 		$result = $response->bindValues($params)->queryOne();
@@ -55,13 +57,14 @@ class SiteController extends Controller
 			$time = time();
 			$token = bin2hex(openssl_random_pseudo_bytes(16));
 			Yii::$app->db->createCommand()->update('user', ['time' => $time, 'token' => $token], ['mail'=>$mail,])->execute();
-			return $token;
+			return ['token' => $token, 'name' => $result['nick']];
 		}
 		return false;
 	}
 	
 	public function actionLogout($token)
 	{
+		Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
 		Yii::$app->db->createCommand()->update('user', ['token' => 0, 'time' => 0], ['token' => $token,])->execute();
 		Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
 		return ['status code' => 200];

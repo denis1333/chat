@@ -1,9 +1,14 @@
 .all-chats{    
-	height: 50vh;
+	height: 45vh;
     width: 100%;
 	float:left;
 	box-shadow: inset 0 0 20px black;
+	padding-top: 10px;
 }
+
+.all-chats p{
+	padding-left: 10px;
+}   
 
 .user-in-chat{
 	height: 50vh;
@@ -13,7 +18,7 @@
 }
 
 .chat-window{
-	height: 100vh;
+	height: 95vh;
     width: 100%;
 	float:left;
 	box-shadow: inset 0 0 20px black;
@@ -31,28 +36,33 @@
 }
 
 .message-output{
-	height: 90vh;
+	height: 77vh;
 }
 
 .message-input{
 	display: inline-block;
-	width: 90%;
+	width: 99%;
 }
 
 .message-input input{
 	width:90%;
-	height: 10vh;
+	height: 17vh;
 	float:left;
 }
 
 .message-input .submit-btn{
 	width:10%;
-	height: 10vh;
+	height: 17vh;
 	float:left;
 	background:white;
 	text-align:center;
-	line-height: 10vh;
+	line-height: 17vh;
 	cursor:pointer;
+	box-shadow: 0 0 10px black;
+}
+
+.message-input .submit-btn:hover{
+	box-shadow: 0 0 10px green;
 }
 
 .all-chats p{
@@ -65,4 +75,91 @@
 
 .chat-window .wrapper{
 	text-align: center;
+	height: 15vh;
+}
+
+nav{
+	height: 5vh; 
+}
+
+.btn{
+	box-shadow: 0 0 5px black;
+	float: right;
+	width: 10%;
+	margin: 5px;
+}
+
+.btn:hover{
+	box-shadow: 0 0 5px green;
+}
+
+.btnReg{
+	
+}
+
+.btnLog{
+	
+}
+
+.nick{
+	float: left;
+    height: 5vh;
+    line-height: 5vh;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
