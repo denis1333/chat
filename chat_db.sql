@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 16 2018 г., 19:10
+-- Время создания: Окт 09 2018 г., 19:17
 -- Версия сервера: 10.1.35-MariaDB
 -- Версия PHP: 7.2.9
 
@@ -65,7 +65,14 @@ CREATE TABLE `message` (
 INSERT INTO `message` (`id`, `text`, `user`, `chat`) VALUES
 (1, 'asfasfasf', 1, 1),
 (2, 'asfasfasf', 1, 1),
-(3, 'hello', 1, 1);
+(3, 'hello', 1, 1),
+(4, '123123', 15, 1),
+(5, 'asdasd', 15, 1),
+(6, 'dfgdfg', 15, 1),
+(7, 'dfg', 15, 2),
+(8, 'dfgdgf', 15, 3),
+(9, 'dfgdfg', 15, 7),
+(10, 'dfgdfg', 15, 8);
 
 -- --------------------------------------------------------
 
@@ -93,7 +100,15 @@ INSERT INTO `user` (`id`, `nick`, `pass`, `mail`, `token`, `time`) VALUES
 (8, 'v1aa', 'afasf@fasf.asfasd', 'afasfasasd', '0', 0),
 (9, 'v1aass', 'afasf@fasf.asfasddd', 'afasfasasdss', '0', 0),
 (10, 'v1aasssd', 'afasf@fasf.asfasdddsd', 'afasfasasdsssd', '0', 0),
-(11, 'asd', 'asdasd', 'asdasd', '0', 0);
+(11, 'asd', 'asdasd', 'asdasd', '0', 0),
+(12, 'sdfasd', 'sdfasd', 'sdfasd', '', 0),
+(13, 'var', 'var', 'var', '', 0),
+(14, 'dadsf', 'dadsf', 'dadsf', '', 0),
+(15, 'rewr', '1234', 'qwer', 'eb0f64e922d1423f53307b23dcab6fc0', 1539103590),
+(16, 'asdas', 'dasdas', 'dasdas', '', 0),
+(17, 'qweqwe', 'qeqw', '123123', '', 0),
+(18, 'qwrqw', 'wrqwrqr', 'rqwrq', '', 0),
+(19, 'qwerqwe', 'qwerqwer', 'rqwer', '', 0);
 
 -- --------------------------------------------------------
 
@@ -164,13 +179,13 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `user_in_chat`

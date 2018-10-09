@@ -39,8 +39,8 @@ $this->title = Yii::$app->name;
 	<div id="app">
 		<nav>
 			<div class="nick">{{ nick }}</div>
-			<div @click="showModal = true, modelType=true" class="btn btnReg">Sign up</div>
-			<div @click="showModal = true, modelType=false" class="btn btnLog">Sign in</div>
+			<div @click="showModal = true, modalType=true" class="btn btnReg">Sign up</div>
+			<div @click="showModal = true, modalType=false" class="btn btnLog">Sign in</div>
 		</nav>
 		<div class="col-1">
 			<div class="all-chats">
@@ -58,16 +58,16 @@ $this->title = Yii::$app->name;
 				<div class="wrapper">
 					<div class="message-input">
 						<input type="textarea"/>
-						<div class="submit-btn">Отправить</div>
+						<div class="submit-btn" @click = "makeMessage">Отправить</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<modal v-if="showModal" @close="showModal = false">
-			<template v-if="modelType">
+			<template v-if="modalType">
 				<h3 slot="header">Sign up</h3>
-				<div slot="body" action="handler.php">
-				  <p>Your Nikc</b></p>
+				<div slot="body">
+				  <p>Your Nick</b></p>
 				  <p><input  type="text" name="nick"><Br>
 				  <p>Your Mail</b></p>
 				  <input  type="text" name="mail" ><Br>
@@ -78,7 +78,7 @@ $this->title = Yii::$app->name;
 			</template>
 			<template v-else>
 				<h3 slot="header">Sign in</h3>
-				<div slot="body" action="handler.php">
+				<div slot="body">
 				  <p>Your Mail</b></p>
 				  <input  type="text" name="mail" ><Br>
 				  <p>Your Pass</b></p>

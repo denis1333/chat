@@ -153,4 +153,19 @@ class SiteController extends Controller
 		$result = $response->bindValues($params)->queryAll();
 		return $result;
 	}
+	
+	public function actionCheckAuth($token){
+		Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+		$params = [':token' => $token];
+		$response = Yii::$app->db->createCommand(
+		'SELECT time FROM user WHERE token = :token'
+		);
+		$result = $response->bindValues($params)->queryAll();
+		$estimatedTime = (time() - (int)$result[0]["time"])/ 60;
+		if($estimatedTime > 60){
+			return "606";
+		}else{
+			return "200";
+		}
+	}
 }

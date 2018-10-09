@@ -30,6 +30,13 @@ var app = new Vue({
 		console.log(xhr.responseText);
 		this.chat_messages = $.parseJSON(xhr.responseText);
 	  },
+	  get_all_message_chatName: function(chanName){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'http://' + this.site_url + '/site/get-all-message?chatName='+ chanName, false);
+		xhr.send();
+		console.log(xhr.responseText);
+		this.chat_messages = $.parseJSON(xhr.responseText);
+	  },
 	  click: function(event){
 		  this.get_all_users_in_chat(event);
 		  this.get_all_message(event);
@@ -57,6 +64,25 @@ var app = new Vue({
 		xhr.send();
 		this.nick = $.parseJSON(xhr.responseText).name;
 		this.token = $.parseJSON(xhr.responseText).token;
+		localStorage.setItem("token", this.token);
+		localStorage.setItem("nick", this.nick);
+		console.log( "token = " + localStorage.getItem("token"));
+	  },
+	  makeMessage: function(){
+		var xhr = new XMLHttpRequest();
+		var messageText = $(".message-input input").val();
+		$(".message-input input").val("");
+		var token = this.token;
+		if(token == null){
+			alert("you are not logged in");
+		}
+		var chatName = $(".active").text().replace(" ", "");
+		if(chatName == null){
+			alert("select chat please");
+		}
+		xhr.open('GET', 'http://' + this.site_url + '/site/add-message?token='+ token +"&text=" + messageText + "&chatName="+ chatName, false);
+		xhr.send();
+		this.get_all_message_chatName(chatName);
 	  }
   }
 })
@@ -64,10 +90,12 @@ var app = new Vue({
 app.get_all_chats();
 
 $(document).ready(function(){
-$('.all-chats p').click(function(){
-	elem = $(this);
-	$('.active').removeClass('active');
-	elem.addClass('active');
-});
+	$('.all-chats p').click(function(){
+		elem = $(this);
+		$('.active').removeClass('active');
+		elem.addClass('active');
+	});
 
+	app.token = localStorage.getItem("token");
+	app.nick = localStorage.getItem("nick")
 });
